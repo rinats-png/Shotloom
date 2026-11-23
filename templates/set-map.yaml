@@ -1,0 +1,29 @@
+location_id: SET_01
+world_coordinates:
+  north: positive_y
+  east: positive_x
+  floor_level_m: 0
+layout:
+  doors:
+    - id: DOOR_A
+      position: east wall
+      hinge_side: right seen from room
+      swing_direction: inwards
+  windows: []
+  permanent_props: []
+lighting:
+  - source_id: LAMP_A
+    position: upper north-west
+    color_temperature_kelvin: 4100
+    motivation: ceiling fixture
+camera:
+  action_axis: east-west
+  permitted_side: south
+  geography_reference: assets/locations/SET_01.png
+materials:
+  floor: concrete
+  walls: plaster
+  handles: brushed steel
+rules:
+  - Door hinge and handle remain fixed across all shots.
+  - Reflective surfaces follow actual source positions.

@@ -1,0 +1,72 @@
+schema_version: 1
+id: EP01
+project_id: my-film
+title: Pilot
+summary: Noch auszufüllen
+target_duration_s: 5
+duration_tolerance_s: 0.0
+scenes:
+- id: SC01
+  location_id: SET01
+  time_of_day: Tag
+  world_state: Leer
+  axis_side: south
+shots:
+- id: EP01-S001
+  scene_id: SC01
+  duration_s: 5
+  dramatic_intent: Ein emotional klarer Einstieg
+  character_ids: []
+  prop_ids: []
+  action:
+    blocking: Eine geplante Handlung beschreiben
+    physics: Schwerkraft, Masse, Kontakte definieren
+    beats:
+    - at_s: 0
+      description: Handlung beginnt
+  performance:
+    intention: angespannt, aber beherrscht
+    face: minimale Brauenbewegung, kein übertriebenes Schauspiel
+    eyeline: fixiert den Türgriff
+    gesture: Hände ruhig, Bewegungen anatomisch plausibel
+  camera:
+    framing: Medium Shot
+    focal_mm: 50
+    height_m: 1.55
+    axis_side: south
+    screen_direction: left_to_right
+    movement: static, slight breathing-level movement
+    stabilization: tripod
+    focus: subject eyes; natural falloff
+  look:
+    lighting: kaltes Oberlicht links, gelbe Türwarnlampe rechts
+    color: kühles entsättigtes Grau, natürliche warme Hautreflexe
+    texture: fotorealistische Hautporen, echter Stofffall, fein sichtbarer Staub
+  sound:
+    dialogue: []
+    foley:
+    - leiser Schritt auf Beton
+    ambience:
+    - fernes Netzbrummen
+    - Luftzug im Lüftungsschacht
+    music: keine Musik in der Szene; Spannung durch Raumton
+  continuity:
+    entry: {}
+    exit: {}
+    bridge: reset
+    note: Erster Shot
+  generation:
+    mode: text_to_video
+    model_preferences: []
+    references: []
+    first_frame: null
+    last_frame: null
+    avoid: []
+  editorial:
+    transition: hard cut
+    handles_s: 0.5
+  acceptance_criteria:
+  - Mara bleibt referenzidentisch
+  - keine räumlichen Achsensprünge
+  - Hände und Türgriff halten physischen Kontakt
+  - Bewegung bleibt anatomisch glaubwürdig

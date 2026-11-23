@@ -1,0 +1,24 @@
+change_id: CHG_001
+requested_by: user
+project: my-film
+episode: EP01
+requested_change: "Beschreibung der gewünschten Änderung"
+reason: creative
+scope:
+  characters: []
+  locations: []
+  props: []
+  scenes: []
+  shots: []
+impact:
+  script: unknown
+  reference_images: unknown
+  video_attempts: unknown
+  voice_audio: unknown
+  edit_master: unknown
+  cost_estimate: null
+consent_required: unknown
+user_approved: false
+implemented_files: []
+validation_results: []
+notes: "Approved clips may be invalidated by contract hash; plan minimal rework."

@@ -1,0 +1,339 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "format": {
+      "type": "string",
+      "enum": [
+        "short",
+        "episode",
+        "feature",
+        "trailer",
+        "ad",
+        "music_video",
+        "documentary",
+        "social"
+      ]
+    },
+    "logline": {
+      "type": "string",
+      "minLength": 1
+    },
+    "creative": {
+      "type": "object",
+      "properties": {
+        "genre": {
+          "type": "string",
+          "minLength": 1
+        },
+        "audience": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tone": {
+          "type": "string",
+          "minLength": 1
+        },
+        "look_lock": {
+          "type": "string",
+          "minLength": 1
+        },
+        "artistic_rules": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "prohibited_elements": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "genre",
+        "audience",
+        "tone",
+        "look_lock"
+      ],
+      "additionalProperties": true
+    },
+    "delivery": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "type": "integer",
+          "minimum": 64
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 64
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 12,
+          "maximum": 120
+        },
+        "aspect_ratio": {
+          "type": "string",
+          "minLength": 1
+        },
+        "language": {
+          "type": "string",
+          "minLength": 1
+        },
+        "container": {
+          "type": "string",
+          "const": "mp4"
+        },
+        "color_space": {
+          "type": "string",
+          "minLength": 1
+        },
+        "audio_spec": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "width",
+        "height",
+        "fps",
+        "aspect_ratio",
+        "language",
+        "container"
+      ],
+      "additionalProperties": true
+    },
+    "budget": {
+      "type": "object",
+      "properties": {
+        "currency": {
+          "type": "string",
+          "enum": [
+            "EUR",
+            "USD"
+          ]
+        },
+        "max_total": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max_per_attempt": {
+          "type": "number",
+          "minimum": 0
+        },
+        "planning_reserve_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        }
+      },
+      "required": [
+        "currency",
+        "max_total",
+        "max_per_attempt"
+      ],
+      "additionalProperties": true
+    },
+    "policy": {
+      "type": "object",
+      "properties": {
+        "rights_cleared": {
+          "type": "boolean"
+        },
+        "human_review_required": {
+          "type": "boolean"
+        },
+        "allow_paid_generation_without_per_shot_approval": {
+          "type": "boolean",
+          "const": false,
+          "description": "Hard safety rule: paid generation always requires per-attempt approval."
+        },
+        "consent_notes": {
+          "type": "string"
+        },
+        "asset_license_manifest": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "rights_cleared",
+        "human_review_required",
+        "allow_paid_generation_without_per_shot_approval"
+      ],
+      "additionalProperties": true
+    },
+    "characters": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "identity_lock": {
+            "type": "string",
+            "minLength": 1
+          },
+          "wardrobe_lock": {
+            "type": "string",
+            "minLength": 1
+          },
+          "voice_lock": {
+            "type": "string"
+          },
+          "references": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "physical_rules": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "behavior": {
+            "type": "string",
+            "minLength": 1
+          },
+          "consent_verified": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "identity_lock",
+          "wardrobe_lock",
+          "references"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "locations": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "spatial_lock": {
+            "type": "string",
+            "minLength": 1
+          },
+          "references": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "set_map": {
+            "type": "string",
+            "minLength": 1
+          },
+          "lighting_lock": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "spatial_lock",
+          "references"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "props": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "identity_lock": {
+            "type": "string",
+            "minLength": 1
+          },
+          "references": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "handling": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "identity_lock",
+          "references"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "episodes": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "title",
+    "format",
+    "logline",
+    "creative",
+    "delivery",
+    "budget",
+    "policy",
+    "characters",
+    "locations",
+    "props",
+    "episodes"
+  ],
+  "additionalProperties": true,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHOTLOOM project"
+}

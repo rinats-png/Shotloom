@@ -1,0 +1,516 @@
+schema_version: 1
+id: EP01
+project_id: night-protocol
+season: 1
+number: 1
+title: Die Stimme hinter der Tür
+summary: Mara betritt eine verlassene Sendeanlage und hört hinter der Tür eine unmögliche Aufnahme.
+story_beats:
+- Unbehagen im Set
+- physischer Kontakt
+- akustisches Rätsel
+- Objekthinweis
+- Entscheidung
+- Cliffhanger
+target_duration_s: 33.0
+duration_tolerance_s: 0.2
+scenes:
+- id: SC01
+  location_id: CORRIDOR
+  time_of_day: 23:40, Innenraum Nacht
+  world_state: Keine anderen Menschen, konstant kühle Luft, Warnleuchte über Tür
+  axis_side: south
+  objective: Mara nähert sich einer Stahltür
+shots:
+- id: EP01-S001
+  scene_id: SC01
+  duration_s: 6
+  dramatic_intent: Ein Raum wird bedrohlich, bevor etwas geschieht.
+  character_ids:
+  - MARA
+  prop_ids: []
+  action:
+    blocking: Mara geht vom Mittelgang zur Stahltür im rechten Hintergrund, stoppt mit Abstand zum Griff.
+    physics: Ferse-zu-Zehe-Schritte, Mantel reagiert verzögert auf Stop; Fußboden trägt Gewicht. Keine Gleitbewegung.
+    beats:
+    - at_s: 0
+      description: Blick zur Tür
+    - at_s: 1.5
+      description: drei ruhige Schritte
+    - at_s: 4.5
+      description: stoppt, atmet aus
+  performance:
+    intention: angespannt, aber beherrscht
+    face: minimale Brauenbewegung, kein übertriebenes Schauspiel
+    eyeline: Warnlampe und Türgriff im Osten
+    gesture: Hände ruhig, Bewegungen anatomisch plausibel
+  camera:
+    framing: wide tracking shot
+    focal_mm: 35
+    height_m: 1.55
+    axis_side: south
+    screen_direction: left_to_right
+    movement: subtle sideways dolly to the right
+    stabilization: tripod
+    focus: Mara in der Mitte; Tür sichtbar
+  look:
+    lighting: kaltes Oberlicht links, gelbe Türwarnlampe rechts
+    color: kühles entsättigtes Grau, natürliche warme Hautreflexe
+    texture: fotorealistische Hautporen, echter Stofffall, fein sichtbarer Staub
+  sound:
+    dialogue: []
+    foley:
+    - leiser Schritt auf Beton
+    ambience:
+    - fernes Netzbrummen
+    - Luftzug im Lüftungsschacht
+    music: keine Musik in der Szene; Spannung durch Raumton
+  continuity:
+    entry:
+      MARA:
+        wardrobe: COAT_01
+        hand_left: empty
+        hand_right: empty
+        position: corridor_mid
+        facing: east
+    exit:
+      MARA:
+        wardrobe: COAT_01
+        hand_left: empty
+        hand_right: empty
+        position: by_door
+        facing: east
+    bridge: direct
+    note: ''
+  generation:
+    mode: image_to_video
+    model_preferences:
+    - higgsfield-available-i2v-model
+    - comfyui-local
+    references: []
+    first_frame: null
+    last_frame: null
+    avoid:
+    - face swap
+    - extra fingers
+    - body morph
+    - floaty motion
+    - focal-length change
+    - jump cuts
+    - subtitles and logos
+  editorial:
+    transition: hard cut
+    handles_s: 0.5
+  acceptance_criteria:
+  - Setgeometrie links/rechts erhalten
+  - Stiefel haben Bodenkontakt
+  - gleiche Frau in allen Frames
+- id: EP01-S002
+  scene_id: SC01
+  duration_s: 5
+  dramatic_intent: Verzögerung vor dem Kontakt erzeugt Spannung.
+  character_ids:
+  - MARA
+  prop_ids: []
+  action:
+    blocking: Detail von Maras rechter Hand, die sich langsam auf den kalten, festen Türgriff legt.
+    physics: Die Hand bildet korrekte Fingerkurve um Griff; der starre Griff bewegt sich erst nach Drehung, keine durchdringenden
+      Finger.
+    beats:
+    - at_s: 0
+      description: Hand schwebt einen Zentimeter vor Griff
+    - at_s: 2
+      description: Finger schließen sich um Metall
+    - at_s: 4
+      description: kleine Drehung, Widerstand
+  performance:
+    intention: angespannt, aber beherrscht
+    face: minimale Brauenbewegung, kein übertriebenes Schauspiel
+    eyeline: fixiert den Türgriff
+    gesture: rechte Hand, vier Finger sichtbar, Daumen auf der Gegenseite
+  camera:
+    framing: extreme close-up of right hand and handle
+    focal_mm: 65
+    height_m: 1.1
+    axis_side: south
+    screen_direction: left_to_right
+    movement: almost imperceptible push-in
+    stabilization: tripod
+    focus: skin-to-metal contact
+  look:
+    lighting: kaltes Oberlicht links, gelbe Türwarnlampe rechts
+    color: kühles entsättigtes Grau, natürliche warme Hautreflexe
+    texture: fotorealistische Hautporen, echter Stofffall, fein sichtbarer Staub
+  sound:
+    dialogue: []
+    foley:
+    - Stoffrascheln
+    - kleines metallisches Klicken
+    ambience:
+    - fernes Brummen
+    music: keine Musik in der Szene; Spannung durch Raumton
+  continuity:
+    entry:
+      MARA:
+        wardrobe: COAT_01
+        hand_left: empty
+        hand_right: empty
+        position: by_door
+        facing: east
+    exit:
+      MARA:
+        wardrobe: COAT_01
+        hand_left: empty
+        hand_right: door_handle
+        position: by_door
+        facing: east
+    bridge: direct
+    note: ''
+  generation:
+    mode: image_to_video
+    model_preferences:
+    - higgsfield-available-i2v-model
+    - comfyui-local
+    references: []
+    first_frame: null
+    last_frame: null
+    avoid:
+    - face swap
+    - extra fingers
+    - body morph
+    - floaty motion
+    - focal-length change
+    - jump cuts
+    - subtitles and logos
+  editorial:
+    transition: hard cut
+    handles_s: 0.5
+  acceptance_criteria:
+  - Nur rechte Hand greift
+  - Kein deformierter Griff
+  - Physischer Widerstand sichtbar
+- id: EP01-S003
+  scene_id: SC01
+  duration_s: 5
+  dramatic_intent: Die Figur erkennt eine Gefahr durch Hören statt durch Sehen.
+  character_ids:
+  - MARA
+  prop_ids: []
+  action:
+    blocking: Nahaufnahme von Mara am Türrahmen, rechte Hand außerhalb des Bildes weiter am Griff; sie lauscht.
+    physics: Keine Geisterbewegung, Atmung und Mikroreaktion zeitlich konsistent.
+    beats:
+    - at_s: 0
+      description: Blick stabil zur Tür
+    - at_s: 2
+      description: ein kurzes Innehalten
+    - at_s: 4
+      description: Augen öffnen sich minimal
+  performance:
+    intention: angespannt, aber beherrscht
+    face: kaum merkliches Zusammenziehen der Augen und Kieferanspannung
+    eyeline: zur Tür auf Bildrechts
+    gesture: Hand außerhalb des Bildes bleibt am Griff
+  camera:
+    framing: close-up face
+    focal_mm: 65
+    height_m: 1.55
+    axis_side: south
+    screen_direction: left_to_right
+    movement: locked-off
+    stabilization: tripod
+    focus: left eye; soft falloff
+  look:
+    lighting: kaltes Oberlicht links, gelbe Türwarnlampe rechts
+    color: kühles entsättigtes Grau, natürliche warme Hautreflexe
+    texture: fotorealistische Hautporen, echter Stofffall, fein sichtbarer Staub
+  sound:
+    dialogue: []
+    foley:
+    - leiser Schritt auf Beton
+    ambience:
+    - elektrisches leises Knistern hinter Tür
+    - fernes Brummen
+    music: keine Musik in der Szene; Spannung durch Raumton
+  continuity:
+    entry:
+      MARA:
+        wardrobe: COAT_01
+        hand_left: empty
+        hand_right: door_handle
+        position: by_door
+        facing: east
+    exit:
+      MARA:
+        wardrobe: COAT_01
+        hand_left: empty
+        hand_right: door_handle
+        position: by_door
+        facing: east
+    bridge: direct
+    note: ''
+  generation:
+    mode: image_to_video
+    model_preferences:
+    - higgsfield-available-i2v-model
+    - comfyui-local
+    references: []
+    first_frame: null
+    last_frame: null
+    avoid:
+    - face swap
+    - extra fingers
+    - body morph
+    - floaty motion
+    - focal-length change
+    - jump cuts
+    - subtitles and logos
+  editorial:
+    transition: hard cut
+    handles_s: 0.5
+  acceptance_criteria:
+  - Narbe anatomisch links
+  - Subtile Mimik ohne Verzerrung
+- id: EP01-S004
+  scene_id: SC01
+  duration_s: 5
+  dramatic_intent: Erster Hinweis auf das unerklärliche Geräusch.
+  character_ids: []
+  prop_ids:
+  - RECORDER
+  action:
+    blocking: Durch den Türspalt ist kurz der alte Kassettenrekorder auf einem Regal zu sehen, rote LED leuchtet.
+    physics: Metallregal ist fest. LED blinkt stabil und ohne Formwechsel. Türspalt behält räumliche Geometrie.
+    beats:
+    - at_s: 0
+      description: sehr dunkle Ansicht
+    - at_s: 1.5
+      description: rote LED wird sichtbar
+    - at_s: 3.5
+      description: leichter Fokuswechsel auf Rekorder
+  performance:
+    intention: angespannt, aber beherrscht
+    face: minimale Brauenbewegung, kein übertriebenes Schauspiel
+    eyeline: fixiert den Türgriff
+    gesture: Hände ruhig, Bewegungen anatomisch plausibel
+  camera:
+    framing: insert shot / close-up through door slit
+    focal_mm: 65
+    height_m: 1.55
+    axis_side: south
+    screen_direction: left_to_right
+    movement: static
+    stabilization: tripod
+    focus: rack focus to red LED
+  look:
+    lighting: kaltes Oberlicht links, gelbe Türwarnlampe rechts
+    color: kühles entsättigtes Grau, natürliche warme Hautreflexe
+    texture: fotorealistische Hautporen, echter Stofffall, fein sichtbarer Staub
+  sound:
+    dialogue: []
+    foley:
+    - leise Kassettenmechanik
+    ambience:
+    - tiefes elektrisches Brummen
+    music: keine Musik in der Szene; Spannung durch Raumton
+  continuity:
+    entry: {}
+    exit: {}
+    bridge: cutaway
+    note: Mara bleibt off-camera am Türgriff
+  generation:
+    mode: image_to_video
+    model_preferences:
+    - higgsfield-available-i2v-model
+    - comfyui-local
+    references: []
+    first_frame: null
+    last_frame: null
+    avoid:
+    - face swap
+    - extra fingers
+    - body morph
+    - floaty motion
+    - focal-length change
+    - jump cuts
+    - subtitles and logos
+  editorial:
+    transition: hard cut
+    handles_s: 0.5
+  acceptance_criteria:
+  - Genau derselbe Rekorder
+  - Keine neuen Bedienelemente
+  - Tiefenstaffelung plausibel
+- id: EP01-S005
+  scene_id: SC01
+  duration_s: 7
+  dramatic_intent: Mutige Entscheidung ohne Aktionismus.
+  character_ids:
+  - MARA
+  prop_ids: []
+  action:
+    blocking: 'Über die Schulter von Mara: sie öffnet die schwere Tür langsam und tritt über die Schwelle.'
+    physics: Tür dreht starr um feste Scharnierachse, Mantel streift die Tür; Gewicht und Trägheit stimmen, kein Teleport.
+    beats:
+    - at_s: 0
+      description: rechte Hand auf Griff
+    - at_s: 2
+      description: Tür öffnet sich mit Widerstand
+    - at_s: 4.5
+      description: Mara setzt einen Fuß über Schwelle
+    - at_s: 6
+      description: Hand löst sich und sie hält an
+  performance:
+    intention: angespannt, aber beherrscht
+    face: minimale Brauenbewegung, kein übertriebenes Schauspiel
+    eyeline: fixiert den Türgriff
+    gesture: Hände ruhig, Bewegungen anatomisch plausibel
+  camera:
+    framing: over-the-shoulder medium
+    focal_mm: 35
+    height_m: 1.55
+    axis_side: south
+    screen_direction: left_to_right
+    movement: slow push 0.4 m
+    stabilization: tripod
+    focus: Türöffnung und Maras Schulter
+  look:
+    lighting: kaltes Oberlicht links, gelbe Türwarnlampe rechts
+    color: kühles entsättigtes Grau, natürliche warme Hautreflexe
+    texture: fotorealistische Hautporen, echter Stofffall, fein sichtbarer Staub
+  sound:
+    dialogue: []
+    foley:
+    - schweres Türscharnier
+    - ein Schuh auf Metallleiste
+    ambience:
+    - Brummen wird stärker
+    music: keine Musik in der Szene; Spannung durch Raumton
+  continuity:
+    entry:
+      MARA:
+        wardrobe: COAT_01
+        hand_left: empty
+        hand_right: door_handle
+        position: by_door
+        facing: east
+    exit:
+      MARA:
+        wardrobe: COAT_01
+        hand_left: empty
+        hand_right: empty
+        position: threshold
+        facing: east
+    bridge: cutaway
+    note: Rückkehr nach Insert ohne Zeitversatz
+  generation:
+    mode: image_to_video
+    model_preferences:
+    - higgsfield-available-i2v-model
+    - comfyui-local
+    references: []
+    first_frame: null
+    last_frame: null
+    avoid:
+    - face swap
+    - extra fingers
+    - body morph
+    - floaty motion
+    - focal-length change
+    - jump cuts
+    - subtitles and logos
+  editorial:
+    transition: hard cut
+    handles_s: 0.5
+  acceptance_criteria:
+  - Türwinkel monoton öffnend
+  - Griff und Scharniere wechseln nicht
+  - Körper-Masse und Kontakt erhalten
+- id: EP01-S006
+  scene_id: SC01
+  duration_s: 5
+  dramatic_intent: 'Emotionaler Cliffhanger: sie erkennt ihre eigene Stimme.'
+  character_ids:
+  - MARA
+  prop_ids: []
+  action:
+    blocking: Statische Nahaufnahme, Mara blickt in den dunklen Raum und flüstert einen Satz.
+    physics: Mimik mikroskopisch; Lippenphoneme zum gesprochenen Ton; kein Gesichtsmorphing.
+    beats:
+    - at_s: 0
+      description: Blick fest
+    - at_s: 1
+      description: unmerkliches Einatmen
+    - at_s: 2
+      description: flüstert langsam
+    - at_s: 4.5
+      description: Schweigen
+  performance:
+    intention: angespannt, aber beherrscht
+    face: Fassungslosigkeit nur in Blick und leicht geöffnetem Mund
+    eyeline: in den Raum rechts der Kamera
+    gesture: Hände außerhalb des Bilds still
+  camera:
+    framing: tight portrait
+    focal_mm: 65
+    height_m: 1.55
+    axis_side: south
+    screen_direction: left_to_right
+    movement: static
+    stabilization: tripod
+    focus: eyes and lips
+  look:
+    lighting: kaltes Oberlicht links, gelbe Türwarnlampe rechts
+    color: kühles entsättigtes Grau, natürliche warme Hautreflexe
+    texture: fotorealistische Hautporen, echter Stofffall, fein sichtbarer Staub
+  sound:
+    dialogue:
+    - character_id: MARA
+      text: Das war meine Stimme.
+      at_s: 2
+      delivery: kaum hörbares, belegtes Flüstern
+    foley:
+    - leises Einatmen
+    ambience:
+    - Brummen stoppt am letzten Wort
+    music: Stille nach dem Satz
+  continuity:
+    entry:
+      MARA:
+        wardrobe: COAT_01
+        hand_left: empty
+        hand_right: empty
+        position: threshold
+        facing: east
+    exit:
+      MARA:
+        wardrobe: COAT_01
+        hand_left: empty
+        hand_right: empty
+        position: threshold
+        facing: east
+    bridge: direct
+    note: ''
+  generation:
+    mode: image_to_video
+    model_preferences:
+    - higgsfield-available-i2v-model
+    - comfyui-local
+    references: []
+    first_frame: null
+    last_frame: null
+    avoid:
+    - face swap
+    - extra fingers
+    - body morph
+    - floaty motion
+    - focal-length change
+    - jump cuts
+    - subtitles and logos
+  editorial:
+    transition: hard cut
+    handles_s: 0.5
+  acceptance_criteria:
+  - Lippensynchronität frameweise prüfen
+  - Stimme passt exakt zum Voice-Lock
+  - Keine Nebenfiguren oder Zusatzdialoge

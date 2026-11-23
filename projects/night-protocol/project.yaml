@@ -1,0 +1,86 @@
+schema_version: 1
+id: night-protocol
+title: Nachtprotokoll
+format: episode
+logline: Eine Technikerin hört hinter einer versiegelten Tür eine Stimme, die unmöglich
+  dort sein kann.
+creative:
+  genre: Mystery / realistischer Thriller
+  audience: Erwachsene, 16+
+  tone: ruhig, beunruhigend, keine billigen Schockeffekte
+  look_lock: Fotorealistisch. Praktische Lichtquellen. Kühle Nachtfarben mit vereinzelten
+    warmen Reflexen. Natürliche Hautstruktur, keine Beauty-Glättung. 35–65mm Äquivalent;
+    ruhige präzise Kamerabewegungen.
+  artistic_rules:
+  - Spannung entsteht aus Blick, Ton und Reaktion, nicht aus CGI-Explosionen
+  - In jedem Shot nur eine zentrale Handlung und klare Blickachse
+  - Keine neue Figur ohne explizite Dramaturgieentscheidung
+  prohibited_elements:
+  - falsche Hände
+  - Figurendrift
+  - magische Kamerabewegungen
+  - unnötiger Text im Bild
+delivery:
+  width: 1920
+  height: 1080
+  fps: 24
+  aspect_ratio: '16:9'
+  language: de-DE
+  container: mp4
+  color_space: Rec.709 SDR
+  audio_spec: Stereo, 48 kHz, separates Master, Loudness nach Zielplattform messen
+budget:
+  currency: EUR
+  max_total: 40.0
+  max_per_attempt: 5.0
+  planning_reserve_pct: 25
+policy:
+  rights_cleared: false
+  human_review_required: true
+  allow_paid_generation_without_per_shot_approval: false
+  consent_notes: 'Demo: Erst nach Prüfung aller echten oder generierten Referenzen
+    auf true setzen.'
+  asset_license_manifest: rights/assets.csv
+characters:
+  MARA:
+    id: MARA
+    name: Mara Neumann
+    identity_lock: Fiktive erwachsene Frau, 38, eckiges Gesicht mit kleiner Narbe
+      über der linken Braue, dunkelbraunes kinnlanges Haar, graublaue Augen, natürliche
+      Haut, glaubwürdige Proportionen
+    wardrobe_lock: dunkelgrauer wetterfester Mantel mit kleinem Messingreißverschluss,
+      schwarze Stiefel, grauer Schal; über die gesamte Szene identisch
+    voice_lock: tiefe ruhige Frauenstimme, Deutsch, gehauchter Satz ohne theatralisches
+      Kreischen
+    references:
+    - assets/characters/mara/front.png
+    - assets/characters/mara/profile.png
+    - assets/characters/mara/fullbody.png
+    physical_rules:
+    - Linke Brauen-Narbe immer auf anatomisch linker Seite
+    - Keine Veränderung von Haarlänge, Narbenposition, Manteldetails
+    behavior: zurückhaltend, prüft vor jeder Handlung zuerst den Raum
+    consent_verified: true
+locations:
+  CORRIDOR:
+    id: CORRIDOR
+    name: Korridor einer alten Sendestation
+    spatial_lock: Langer enger Korridor, grauer Putz, eine schwere Stahltür am Ende
+      rechts im Bild; über der Tür eine gelbe Warnlampe; links freiliegende Kupferrohre;
+      die ganze Zeit dieselben Türscharnier- und Griffpositionen
+    references:
+    - assets/locations/corridor.png
+    set_map: Tür im Osten, Kamera auf Südseite der Ost-West-Achse; keine spontanen
+      Spiegelungen oder Raumtausch
+    lighting_lock: eine kalte Deckenleuchte links, gelbe Warnlampe über Tür, sonst
+      fast dunkel
+props:
+  RECORDER:
+    id: RECORDER
+    identity_lock: alter beigefarbener Kassettenrekorder mit defekter linker Taste,
+      roter LED, niemals Formwechsel
+    references:
+    - assets/props/recorder.png
+    handling: liegt hinter der Tür auf einem staubigen Metallregal
+episodes:
+  EP01: episodes/EP01.yaml

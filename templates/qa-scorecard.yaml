@@ -1,0 +1,20 @@
+episode: EP01
+shot: EP01-S001
+attempt: 1
+reviewer: "Tatsächlichen menschlichen Reviewer angeben"
+scores_0_to_5:
+  identity: null
+  continuity: null
+  anatomy_physics: null
+  performance: null
+  cinematography: null
+  light: null
+  editability: null
+  sound_sync: null
+  artifact_free: null
+  storytelling: null
+issues_with_timecode: []
+action: rework_or_select
+reviewed_original_frames: false
+reviewed_with_sound: false
+notes: "Diese Vorlage ist kein automatischer Pass; via shotloom review erfassen."

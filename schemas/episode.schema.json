@@ -1,0 +1,522 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "season": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "number": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "story_beats": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "target_duration_s": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "duration_tolerance_s": {
+      "type": "number",
+      "minimum": 0
+    },
+    "scenes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "location_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "time_of_day": {
+            "type": "string",
+            "minLength": 1
+          },
+          "world_state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "axis_side": {
+            "type": "string",
+            "minLength": 1
+          },
+          "objective": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "location_id",
+          "time_of_day",
+          "world_state",
+          "axis_side"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "shots": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scene_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "duration_s": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "dramatic_intent": {
+            "type": "string",
+            "minLength": 1
+          },
+          "character_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "prop_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "action": {
+            "type": "object",
+            "properties": {
+              "blocking": {
+                "type": "string",
+                "minLength": 1
+              },
+              "physics": {
+                "type": "string",
+                "minLength": 1
+              },
+              "beats": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "at_s": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "description": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "at_s",
+                    "description"
+                  ],
+                  "additionalProperties": true
+                }
+              }
+            },
+            "required": [
+              "blocking",
+              "physics",
+              "beats"
+            ],
+            "additionalProperties": true
+          },
+          "performance": {
+            "type": "object",
+            "properties": {
+              "intention": {
+                "type": "string",
+                "minLength": 1
+              },
+              "face": {
+                "type": "string",
+                "minLength": 1
+              },
+              "eyeline": {
+                "type": "string",
+                "minLength": 1
+              },
+              "gesture": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "intention",
+              "face",
+              "eyeline",
+              "gesture"
+            ],
+            "additionalProperties": true
+          },
+          "camera": {
+            "type": "object",
+            "properties": {
+              "framing": {
+                "type": "string",
+                "minLength": 1
+              },
+              "focal_mm": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "height_m": {
+                "type": "number",
+                "minimum": 0
+              },
+              "axis_side": {
+                "type": "string",
+                "minLength": 1
+              },
+              "axis_exception_reason": {
+                "type": "string"
+              },
+              "screen_direction": {
+                "type": "string",
+                "minLength": 1
+              },
+              "movement": {
+                "type": "string",
+                "minLength": 1
+              },
+              "stabilization": {
+                "type": "string",
+                "minLength": 1
+              },
+              "focus": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "framing",
+              "focal_mm",
+              "height_m",
+              "axis_side",
+              "screen_direction",
+              "movement",
+              "stabilization",
+              "focus"
+            ],
+            "additionalProperties": true
+          },
+          "look": {
+            "type": "object",
+            "properties": {
+              "lighting": {
+                "type": "string",
+                "minLength": 1
+              },
+              "color": {
+                "type": "string",
+                "minLength": 1
+              },
+              "texture": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "lighting",
+              "color",
+              "texture"
+            ],
+            "additionalProperties": true
+          },
+          "sound": {
+            "type": "object",
+            "properties": {
+              "dialogue": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "character_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "text": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "at_s": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "delivery": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "character_id",
+                    "text",
+                    "at_s"
+                  ],
+                  "additionalProperties": true
+                }
+              },
+              "foley": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "ambience": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "music": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "dialogue",
+              "foley",
+              "ambience",
+              "music"
+            ],
+            "additionalProperties": true
+          },
+          "continuity": {
+            "type": "object",
+            "properties": {
+              "entry": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "wardrobe": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "hand_left": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "hand_right": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "position": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "facing": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [],
+                  "additionalProperties": true
+                }
+              },
+              "exit": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "wardrobe": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "hand_left": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "hand_right": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "position": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "facing": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [],
+                  "additionalProperties": true
+                }
+              },
+              "bridge": {
+                "type": "string",
+                "enum": [
+                  "direct",
+                  "cutaway",
+                  "time_jump",
+                  "reset"
+                ]
+              },
+              "note": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "entry",
+              "exit",
+              "bridge"
+            ],
+            "additionalProperties": true
+          },
+          "generation": {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "image_to_video",
+                  "text_to_video",
+                  "video_to_video",
+                  "motion_transfer"
+                ]
+              },
+              "model_preferences": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "references": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "first_frame": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "last_frame": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "avoid": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "required": [
+              "mode",
+              "model_preferences",
+              "references",
+              "avoid"
+            ],
+            "additionalProperties": true
+          },
+          "editorial": {
+            "type": "object",
+            "properties": {
+              "transition": {
+                "type": "string",
+                "minLength": 1
+              },
+              "handles_s": {
+                "type": "number",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "transition",
+              "handles_s"
+            ],
+            "additionalProperties": true
+          },
+          "acceptance_criteria": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "id",
+          "scene_id",
+          "duration_s",
+          "dramatic_intent",
+          "character_ids",
+          "prop_ids",
+          "action",
+          "performance",
+          "camera",
+          "look",
+          "sound",
+          "continuity",
+          "generation",
+          "editorial",
+          "acceptance_criteria"
+        ],
+        "additionalProperties": true
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "project_id",
+    "title",
+    "summary",
+    "target_duration_s",
+    "scenes",
+    "shots"
+  ],
+  "additionalProperties": true,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHOTLOOM episode"
+}

@@ -1,0 +1,38 @@
+# Ergänzende kreative Figurenakte, bei Bedarf nach project.characters übertragen.
+character_id: CHR_01
+name: Beispielname
+fictional_or_real: fictional
+real_person_consent_record: null
+visual_lock:
+  age_appearance: erwachsen
+  face: genaue beobachtbare Merkmale
+  facial_asymmetry: markantes Detail anatomisch zuordnen
+  eyes: Blick, Farbe, Form
+  hair: Farbe, Ansatz, Schnitt, Länge
+  skin_texture: natürliche Struktur
+  silhouette: Proportionen, Körperhaltung, Gang
+  wardrobe_states:
+    OUTFIT_A: Stoff, Farben, Nähte, Accessoires, Schuhe
+  references:
+    front: null
+    profile_left: null
+    profile_right: null
+    three_quarter: null
+    full_body: null
+    material_detail: null
+voice_lock:
+  language: de-DE
+  pitch: tiefer / mittlerer / höherer Bereich
+  pacing: natürliche Sprechweise, Pausen
+  accent: definierter Akzent oder neutral
+  emotional_range: glaubwürdige Spannweite
+psychology:
+  goal: externes Ziel
+  inner_need: inneres Bedürfnis
+  fear: größte Angst
+  contradiction: innerer Widerspruch
+  boundaries: Dinge, die diese Figur nicht grundlos tut
+season_arc:
+  at_start: Zustand Episode 1
+  transformation: glaubwürdige Entwicklungsstufen
+  unresolved: offene Konflikte

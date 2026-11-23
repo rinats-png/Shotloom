@@ -1,0 +1,27 @@
+series_id: my-series
+season: 1
+theme: Thema und Leitfrage
+format:
+  episodes: 6
+  target_duration_min: 12
+world_rules:
+  - Technische/physikalische Grundregeln der Welt
+immutable_facts: []
+character_arcs:
+  CHR_01:
+    start: Ziel und Motivation
+    change: schrittweiser Wandel
+    end: Zielzustand
+    voice_identity: VOICE_01
+setups_and_payoffs:
+  - id: THREAD_A
+    setup_episode: 1
+    payoff_episode: 6
+    description: Dramaturgischer Faden
+episodes:
+  EP01:
+    a_plot: Hauptkonflikt
+    b_plot: Nebenhandlung
+    character_change: Veränderung
+    cliffhanger: Ende
+continuity_ledger: []

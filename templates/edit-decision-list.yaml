@@ -1,0 +1,27 @@
+episode_id: EP01
+picture_lock: false
+shots:
+  - shot_id: EP01-S001
+    selected_attempt: null
+    source_in_s: 0.0
+    source_out_s: 5.0
+    timeline_in_s: 0.0
+    transition: hard_cut
+    sound_pre_lap_s: 0.0
+    sound_post_lap_s: 0.0
+color:
+  reference_frame: null
+  target_space: Rec.709
+  look_notes: natürliche Hauttöne, kontrollierte Schatten
+audio:
+  dialog_master: null
+  ambience_stems: []
+  foley_stems: []
+  score_stems: []
+  final_mix: null
+subtitles:
+  de: null
+  reviewed: false
+release:
+  full_watchthrough_approved: false
+  legal_clearance: false

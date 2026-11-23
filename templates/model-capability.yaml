@@ -1,0 +1,29 @@
+provider: higgsfield_cli
+model_id: null
+verified_at: null
+verified_from: null
+verified_by: null
+supports:
+  text_to_video: unknown
+  image_to_video: unknown
+  video_to_video: unknown
+  start_frame: unknown
+  end_frame: unknown
+  multi_character_refs: unknown
+  motion_reference: unknown
+  native_audio: unknown
+  lip_sync_language_de: unknown
+limits:
+  min_duration_s: null
+  max_duration_s: null
+  resolutions: []
+  reference_count: null
+  file_size_mb: null
+pricing:
+  currency: null
+  price_per_second: null
+  cost_estimate_endpoint: null
+license:
+  commercial_use: unknown
+  provenance_requirements: unknown
+notes: "Replace unknown with only live checked capabilities, never with guesses."

@@ -1,0 +1,27 @@
+# UNAPPROVED creative development material: pilot planning, not canon.
+series_id: night-protocol
+season: 1
+theme: "Wie zuverlässig sind Erinnerungen und aufgezeichnete Stimmen?"
+format:
+  planned_episodes: 4
+  pilot_runtime_sec: 33
+world_rules:
+  - "Eine technische Erklärung bleibt möglich, bis die Story das Gegenteil belegt"
+  - "Keine abrupten übernatürlichen Effekte ohne erzählerische Vorbereitung"
+character_arcs:
+  MARA:
+    start: "ruhige, rationale Technikerin"
+    change: "muss eigene Erinnerungen hinterfragen"
+    end: "noch nicht beschlossen"
+setups_and_payoffs:
+  - id: THREAD_VOICE
+    setup_episode: 1
+    payoff_episode: null
+    description: "Wem gehört die Stimme hinter der Tür?"
+episodes:
+  EP01:
+    summary: "Die Stimme hinter der Tür"
+    status: planned
+  EP02:
+    summary: "Vorläufig: Herkunft der Aufnahme"
+    status: proposal_only
