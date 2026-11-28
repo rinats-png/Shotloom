@@ -60,3 +60,7 @@ Nur wenn bislang unbekannt und unverzichtbar: Darf diese Figur/Quelle kommerziel
 ## Modellzugang
 
 Higgsfield für Coding-Agenten: offizielles CLI + Skills (siehe `docs/06_integrations.md`). Higgsfield MCP: verbundener MCP-Agent. Higgsfield Developer-API: gesonderte Abrechnung, nur mit bestätigter Dokumentation und echten Zugangsdaten. Bei keiner Verbindung: Dateien kompilieren, kein Schein-API-Aufruf. Unabhängig vom Anbieter: JSON-Jobvertrag, Input-/Output-Audit, begrenzte Retries und menschliche Gates.
+
+## Budget-/Draft-Gate v0.2 (verbindlich)
+
+Lies **`docs/13_budget_draft_final.md`** und `agents/production_cost_controller.md` vor jeder kostenpflichtigen Filmproduktion. Erstelle zuerst Script, Animatic, Referenzen, Blocking und Sound-Plan; keine impulsiven Full-HD-Retries. Route schwierige Shots über Preview und separate Final-Review, einfache Shots möglichst direkt, sofern die aktuelle Quote das stützt. Jede Anbieteraktion bekommt eine neue, maximal 30 Minuten gültige, einzelfallbezogene Preisquote. Budgetgrenzen rechnen offenen Reservierungen hinzu. Der Agent protokolliert auch fehlgeschlagene bezahlte Versuche, führt Rückgaben nur nach Rechnungsabgleich durch und finalisiert Drafts nur beim selben offiziellen Higgsfield-Account vor Ablaufdatum. **Keine unbestätigten Dreamina-Angebote als live buchbare API-Kontingente behandeln.**

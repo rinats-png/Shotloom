@@ -1,0 +1,9 @@
+{
+  "provider": "higgscheap",
+  "model": "kling-3",
+  "phase": "preview",
+  "account_alias": "CHANGE_TO_ACTUAL_ACCOUNT_LABEL",
+  "checked_at": "REPLACE_WITH_EXACT_UTC_TIMESTAMP",
+  "effective_usd_per_credit": "REPLACE_WITH_REAL_RATE_INCLUDING_FEES",
+  "dry_run": null
+}

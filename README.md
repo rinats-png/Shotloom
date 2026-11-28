@@ -2,7 +2,7 @@
 
 **Von einer vagen Idee zu einer prüfbaren Filmproduktion:** Story → Serienbibel → Szenen → Shotplanung → Referenzbilder → Keyframes → Video → Schauspiel/Physik/Continuity-QA → Dialog/Foley/Musik → Schnitt → Master → Veröffentlichung.
 
-**Stand:** 0.1.0, 23.11.2026. **Status:** lauffähiger lokaler Produktionskern, Prompt-Compiler, Stage-Gates, Kostenjournal, strukturierte menschliche Qualitätsprüfung und FFmpeg-Assembly. **Nicht enthalten:** eingebettete Videogenerierungsmodelle, automatischer Higgsfield-API-Client, KI-Drehbuch-LLM oder garantierte visuelle Qualität. Externe Generierung erfolgt über einen entsprechend angebundenen Coding-Agenten (Higgsfield CLI/Skills, MCP, ein anderer Anbieter oder lokal ComfyUI), der die Jobdateien liest und die Ergebnisse zurückregistriert.
+**Stand:** 0.2.0, 28.11.2026. **Status:** lauffähiger lokaler Produktionskern, Prompt-Compiler, Stage-Gates, Kostenjournal, strukturierte menschliche Qualitätsprüfung und FFmpeg-Assembly. **Nicht enthalten:** eingebettete Videogenerierungsmodelle, automatischer Higgsfield-API-Client, KI-Drehbuch-LLM oder garantierte visuelle Qualität. Externe Generierung erfolgt über einen entsprechend angebundenen Coding-Agenten (Higgsfield CLI/Skills, MCP, ein anderer Anbieter oder lokal ComfyUI), der die Jobdateien liest und die Ergebnisse zurückregistriert.
 
 ## Warum nicht einfach „ein Prompt“?
 
@@ -56,6 +56,31 @@ Zusätzliche fachliche Rollen liegen in `agents/`, ausführbare Arbeitsanweisung
 | G9 Release | Nutzer | voller Durchlauf, Master-Hash, Rechte, Deliverables | `release` nur nach Abnahme |
 
 **Quellpriorität:** jüngste ausdrückliche Nutzerentscheidung > genehmigte Projekt-Bible > Episodenspezifikation > Shotbrief > Generatorvorschlag. Nie einen Fix durch Veränderung der festen Figur oder der Raumlogik „erkaufen“.
+
+
+## Neu in v0.2 — Kostenbewusste Draft-/Final-Produktion
+
+SHOTLOOM enthält jetzt einen **nicht kostenpflichtigen** Szenen-Risk-Router, Richtkosten-Simulator und einen real-quote-basierten Freigabe-/Abgleichworkflow. Kein integrierter Provider-Call wird automatisch ausgeführt. Lies vor der ersten Nutzung **[docs/13_budget_draft_final.md](docs/13_budget_draft_final.md)**. Dreamina hat einen separaten Preisvergleich unter **[docs/14_dreamina_pricing.md](docs/14_dreamina_pricing.md)**; ein Dreamina-Web-Abonnement ist **kein** Dreamina-API/MCP-Zugang.
+
+```bash
+# Vorbereitung: project.yaml braucht ausdrücklich USD-Budget; beide Beispielvorlagen stehen
+# absichtlich noch auf EUR, damit Währungsumrechnung nicht stillschweigend erfolgt.
+shotloom cost-plan --project projects/mein-film --episode EP01 \
+  --provider higgscheap --model kling-3 --previews 2 --write
+
+# Nach Live-Trockenabfrage beim Anbieter: genau eine Quote je kostenpflichtigem Job.
+shotloom quote-import --project projects/mein-film --shot EP01-S001 --file /pfad/quote.json
+shotloom stage-authorize --project projects/mein-film --quote-id QUOTE_ID --by "Freigebende Person" --confirmed
+shotloom stage-request --project projects/mein-film --quote-id QUOTE_ID
+# Der verbundenen Provider-Agent muss Quote, Daten, Rechte und Account nochmals prüfen.
+# Nach erfolgter Generierung: stage-record, review und select (nur Finalclips).
+# Fehlgeschlagene, ggf. berechnete Provideraufträge müssen mit stage-failure abgeglichen werden.
+# Reservierung nur dann mit stage-void lösen, wenn der Auftrag NICHT versendet wurde.
+```
+
+**Strategie:** Einfache Kling-1080p-Shots können direkt günstiger sein als eine zusätzliche 720p-Vorschau. Teure/komplexe Shots brauchen Keyframes, Motion-Referenzen und ggf. 480p/720p-Prüfrender. Offizielles **Higgsfield-Seedance-2.5-`finalize-draft`** funktioniert ausschließlich mit einem dort erzeugten und innerhalb von sieben Tagen (oder einer kürzeren Providerfrist) finalisierten 480p-Draft aus demselben Konto. Higgscheap-Previews sind **keine** verifizierten Draft-Finalisierungsaufträge.
+
+Die alte `authorize`/`record`-Schnittstelle bleibt für die bestehende Demo/Legacy-Nutzung, ist aber **nicht** der empfohlene abrechnungsgeführte Produktionsweg. Verwende bei neuen Produktionen `quote-import` → `stage-authorize` → `stage-request` → `stage-record`/`stage-failure` → `review` → `select`. Agenten dürfen `--confirmed` nicht selbst als vermeintliche Nutzerfreigabe erfinden.
 
 ## Konkrete CLI nach dem ersten Render
 

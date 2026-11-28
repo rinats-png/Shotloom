@@ -13,6 +13,9 @@ from .io import ROOT, ShotloomError, dump_json, load_project, read_state, write_
 from .validation import validate, preflight
 from .state import CRITERIA, authorize, register, review_attempt, select_attempt, sum_spend
 from .media import assemble
+from .costing import build_plan
+from .production import (import_quote, authorize_quote, prepare_request, record_stage,
+                         production_status, settle_failed_request, void_unsubmitted_authorization)
 
 
 def make_parser() -> argparse.ArgumentParser:
@@ -32,6 +35,42 @@ def make_parser() -> argparse.ArgumentParser:
     p = project_cmd("compile", "Prompts, Jobs und Timeline schreiben")
     p = project_cmd("preflight", "Sperrgründe vor Generierung auflisten")
     p = project_cmd("status", "Fortschritt, Freigaben und Kosten anzeigen")
+    p = project_cmd("cost-plan", "Unverbindliche Draft-vs.-Final-Videokosten in USD simulieren (kein Livepreis)")
+    p.add_argument("--provider", choices=["higgscheap", "higgsfield_api"], default="higgscheap")
+    p.add_argument("--model", choices=["kling-3", "seedance-2-5"], default="kling-3")
+    p.add_argument("--resolution", choices=["1080p", "4k"], default="1080p")
+    p.add_argument("--previews", type=int, default=2)
+    p.add_argument("--cut-overage", type=int, default=15)
+    p.add_argument("--rework-reserve", type=int, default=25)
+    p.add_argument("--native-audio", action="store_true")
+    p.add_argument("--video-input", action="store_true", help="Offizielle API: teurerer Tarif bei Videoeingabe")
+    p.add_argument("--write", action="store_true", help="Unverbindlichen Kostenplan in compiled/ speichern")
+    p = project_cmd("quote-import", "Aktuelles externes dry_run/Preisresultat gegen den Shot prüfen und speichern")
+    p.add_argument("--shot", required=True)
+    p.add_argument("--file", required=True, type=Path, help="JSON mit tatsächlicher Provider-Kalkulation")
+    p = project_cmd("stage-authorize", "Einmalige Budgetfreigabe für eine konkrete Quote")
+    p.add_argument("--quote-id", required=True)
+    p.add_argument("--by", required=True)
+    p.add_argument("--confirmed", action="store_true")
+    p = project_cmd("stage-request", "Geprüften Request-Handoff schreiben, kostenfrei, keine Providerverbindung")
+    p.add_argument("--quote-id", required=True)
+    p = project_cmd("stage-record", "Existierenden Preview-/Final-Clip mit echtem Betrag und Provider-ID buchen")
+    p.add_argument("--quote-id", required=True)
+    p.add_argument("--file", type=Path, required=True)
+    p.add_argument("--actual-usd", required=True)
+    p.add_argument("--provider-request-id", required=True)
+    p.add_argument("--provider-created-at", help="Seedance-Draft: tatsächlicher UTC-Erstellungszeitpunkt")
+    p.add_argument("--provider-expires-at", help="Seedance-Draft: frühere providerseitige Ablaufzeit")
+    p = project_cmd("stage-failure", "Tatsächlich abgerechneten Fehlversuch ohne Video verbuchen")
+    p.add_argument("--quote-id", required=True)
+    p.add_argument("--actual-usd", required=True)
+    p.add_argument("--provider-request-id", required=True)
+    p.add_argument("--reason", required=True)
+    p = project_cmd("stage-void", "Nur unversandte Kostenfreigabe zurücknehmen")
+    p.add_argument("--quote-id", required=True)
+    p.add_argument("--by", required=True)
+    p.add_argument("--confirmed-not-submitted", action="store_true")
+    p = project_cmd("production-status", "Kosten, offene Freigaben und Draft-Ablauf anzeigen")
     p = project_cmd("next", "Nächsten sinnvollen Arbeitsschritt nennen")
     p = project_cmd("authorize", "Kostenfreigabe nur nach expliziter menschlicher Zustimmung")
     p.add_argument("--shot", required=True)
@@ -175,6 +214,42 @@ def main(argv=None) -> int:
         state = read_state(root)
         if a.command == "compile":
             print(json.dumps(compile_episode(root, project, episode), ensure_ascii=False, indent=2))
+        elif a.command == "cost-plan":
+            plan = build_plan(project, episode, provider=a.provider, model=a.model, resolution=a.resolution,
+                              preview_attempts=a.previews, overage_pct=a.cut_overage,
+                              rework_pct=a.rework_reserve, audio=a.native_audio, video_input=a.video_input)
+            if a.write:
+                dump_json(root / "compiled" / episode["id"] / "cost_plan_REFERENCE_ONLY.json", plan)
+            print(json.dumps(plan, ensure_ascii=False, indent=2))
+        elif a.command == "quote-import":
+            content = json.loads(a.file.read_text(encoding="utf-8"))
+            q = import_quote(project, episode, state, a.shot, content)
+            write_state(root, state)
+            print(json.dumps(q, ensure_ascii=False, indent=2))
+        elif a.command == "stage-authorize":
+            approval = authorize_quote(project, episode, state, a.quote_id, a.by, a.confirmed)
+            write_state(root, state)
+            print(json.dumps(approval, ensure_ascii=False, indent=2))
+        elif a.command == "stage-request":
+            payload = prepare_request(root, project, episode, state, a.quote_id)
+            print(json.dumps(payload, ensure_ascii=False, indent=2))
+            print("HINWEIS: Nur Handoff, kein kostenpflichtiger Provider-Aufruf.")
+        elif a.command == "stage-record":
+            attempt = record_stage(root, project, episode, state, a.quote_id, a.file.resolve(), a.actual_usd,
+                                   a.provider_request_id, a.provider_created_at, a.provider_expires_at)
+            write_state(root, state)
+            print(json.dumps(attempt, ensure_ascii=False, indent=2))
+        elif a.command == "stage-failure":
+            obj = settle_failed_request(project, episode, state, a.quote_id, a.actual_usd,
+                                        a.provider_request_id, a.reason)
+            write_state(root, state)
+            print(json.dumps(obj, ensure_ascii=False, indent=2))
+        elif a.command == "stage-void":
+            obj = void_unsubmitted_authorization(state, a.quote_id, a.by, a.confirmed_not_submitted)
+            write_state(root, state)
+            print(json.dumps(obj, ensure_ascii=False, indent=2))
+        elif a.command == "production-status":
+            print(json.dumps(production_status(project, episode, state), ensure_ascii=False, indent=2))
         elif a.command == "preflight":
             return 0 if do_preflight(root, project, episode, state) else 3
         elif a.command == "status":

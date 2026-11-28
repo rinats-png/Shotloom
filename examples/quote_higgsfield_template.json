@@ -1,0 +1,10 @@
+{
+  "provider": "higgsfield_api",
+  "model": "seedance-2-5",
+  "phase": "preview",
+  "account_alias": "CHANGE_TO_ACTUAL_HIGGSFIELD_ACCOUNT_LABEL",
+  "checked_at": "REPLACE_WITH_EXACT_UTC_TIMESTAMP",
+  "estimated_usd": "REPLACE_WITH_QUOTED_RATE_TIMES_DURATION",
+  "video_input": false,
+  "acknowledge_published_rate_not_live": true
+}
