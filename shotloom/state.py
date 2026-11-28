@@ -32,7 +32,8 @@ def authorize(project: dict, episode: dict, state: dict, shot_id: str, max_cost:
         raise ShotloomError("Kostenobergrenze pro Versuch überschritten")
     existing = [a for a in state["approvals"] if not (a["episode"] == episode["id"] and a["shot"] == shot_id)]
     pending = sum(float(a["max_cost"]) for a in existing if not a.get("consumed"))
-    if pending + sum_spend(state) + max_cost > project["budget"]["max_total"] + 1e-9:
+    pending_stage = sum(float(a["reserved_usd"]) for a in state.get("production", {}).get("authorizations", []) if a.get("status") == "reserved")
+    if pending + pending_stage + sum_spend(state) + max_cost > project["budget"]["max_total"] + 1e-9:
         raise ShotloomError("Budgetlimit inkl. offener Freigaben überschritten")
     existing.append({"episode": episode["id"], "shot": shot_id, "max_cost": max_cost,
                      "used": 0, "consumed": False, "approved_by": by, "at": stamp()})
@@ -51,7 +52,7 @@ def register(root: Path, project: dict, episode: dict, state: dict, shot_id: str
         raise ShotloomError("Leere Mediendatei")
     if shot_id not in [s["id"] for s in episode["shots"]]:
         raise ShotloomError("Shot nicht bekannt")
-    approval = next((a for a in state["approvals"] if a["episode"] == episode["id"] and a["shot"] == shot_id), None)
+    approval = next((a for a in state["approvals"] if a["episode"] == episode["id"] and a["shot"] == shot_id and not a.get("consumed")), None)
     if approval is None:
         raise ShotloomError("Generierung ohne vorherige Freigabe darf nicht verbucht werden")
     if approval.get("consumed"):
@@ -119,7 +120,10 @@ def select_attempt(state: dict, episode_id: str, shot_id: str, attempt_no: int, 
         raise ShotloomError("Unbekannter Render-Versuch")
     if expected_contract_hash and node["attempts"][attempt_no - 1].get("contract_hash") != expected_contract_hash:
         raise ShotloomError("Kreativvertrag seit Render geändert: alte Version darf nicht ausgewählt werden")
-    report = node["attempts"][attempt_no - 1].get("review")
+    attempt = node["attempts"][attempt_no - 1]
+    if attempt.get("phase") == "preview":
+        raise ShotloomError("Vorschau darf nicht als Finalclip ausgewählt oder montiert werden")
+    report = attempt.get("review")
     if not report or not report["passed"]:
         raise ShotloomError("Nur durch menschliche QA freigegebene Versuche auswählbar")
     node["selected"] = attempt_no

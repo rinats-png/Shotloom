@@ -40,3 +40,9 @@ Die erste Version setzt die ausgewählten Clips in Reihenfolge mit einheitlichem
 5. Der Nutzer hat die finale Masterdatei, Untertitel-/Tonvarianten nach Auftrag, Produktionsnachweise und eine offene Fehlerliste (idealerweise leer).
 
 **Nicht fertig:** „Prompts erstellt“, „Providerjob eingereicht“ oder „Video sieht in einem Standbild gut aus“.
+
+## November 2026 Ergänzung — Cost-aware rendering
+
+**v0.2 erledigt:** nicht-billingfähiger Kostenplan, per-Quote-Rights-/Budget-Gate, Higgscheap-Handoff und dokumentierter Higgsfield-Seedance-2.5-Draft-Final-Handoff, Draft-Frist, QA und Preisabgleich inklusive bezahlter Fehlschläge.
+
+**Weiter offen:** Anbieter-seitig authentifizierter Live-Preis-/Status-/Rechnungsabgleich; transportgesicherte, serverseitig auditierbare, nicht manipulierbare Freigaben; tatsächliche automatische Bild-/Video-Scoring-Suite; Dreamina offizieller API-Adapter (derzeit nicht verifiziert); projektbezogene edit-list-Kostenerfassung über mehrere Episoden; Wiederaufnahme nach Prozessabsturz; feinere, shotlokale Hash-Abhängigkeiten; erneute Final-Draft-Preisverifizierung unmittelbar vor Beauftragung. Die CLI erstellt Handoffs, keine kostenpflichtigen externen Aufträge.
